@@ -2,7 +2,7 @@ import './GreybandContent.css'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import Image from 'material-ui-image'
-import { Divider, Grid, Typography, Card, CardMedia, CardContent, Button, formatMs } from '@material-ui/core'
+import { Grid, Typography, Card, CardContent, Button } from '@material-ui/core'
 
 function GreybandContent(props) {
     const {push} = useHistory()
