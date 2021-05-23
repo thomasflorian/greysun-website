@@ -16,38 +16,37 @@ const links = [
 {label:"Our Story", to:"/story"},
 {label:"Contact", to:"/contact"}]
 
-// <Typography><Link color="inherit" to="">GreyBand</Link></Typography>
-
 function NavComponent(props) {
 
-  const [isButtonHidden, setIsButtonHidden] = useState(window.innerWidth > 960)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  window.addEventListener('resize', () => {setIsButtonHidden(window.innerWidth > 960)})
-
-  const linkComponents = links.map((link,i) => (
+  const toolbarComponents = links.map((link,i) => (
     <Link key={i} underline="none" color="inherit" activeClassName="active" exact component={NavLink} to={link.to}><MenuItem>{link.label}</MenuItem></Link>
+  ))
+
+  const drawerComponents = links.map((link,i) => (
+    <Link key={i} underline="none" color="inherit" activeClassName="active" exact component={NavLink} to={link.to} onClick={() => setIsMenuOpen(false)}><MenuItem className="mobileLinks">{link.label}</MenuItem></Link>
   ))
 
   return (
     <>
     <AppBar position="fixed" color="secondary" >
       <Toolbar className="toolbar">
-        <Typography variant="h6">
+        <Typography style={props.isMobileView ? {textAlign:"center", flexGrow:"2"} : {textAlign:"start", flexGrow:"1"}} variant="h4">
           Greysun
         </Typography>
         <div className="elements">
-          { isButtonHidden ? linkComponents : 
-            <IconButton className="iconbutton" edge="end" color="inherit" aria-label="menu">
+          { !props.isMobileView ? toolbarComponents : 
+            <IconButton className="iconbutton" edge="end" color="inherit" aria-label="menu" onClick={() => setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen)}>
               { isMenuOpen ? 
-              <CloseIcon onClick={() => setIsMenuOpen(false)} /> :
-              <MenuIcon onClick={() => setIsMenuOpen(true)}/> }
+              <CloseIcon /> :
+              <MenuIcon />}
             </IconButton> }
           </div>
       </Toolbar>
     </AppBar>
-    <SwipeableDrawer open={isMenuOpen} onClose={() => setIsMenuOpen(false)}>
-      {linkComponents}
+    <SwipeableDrawer classes={{paper: "mobileDrawer"}} open={isMenuOpen} onClose={() => setIsMenuOpen(false)} onOpen={() => setIsMenuOpen(true)}>
+      {drawerComponents}
     </SwipeableDrawer>
     </>
   )

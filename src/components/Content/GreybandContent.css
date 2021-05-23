@@ -1,0 +1,9 @@
+.card {
+    color: white !important;
+    background: var(--secondary) !important;
+    display: flex;
+}
+
+.button{
+    margin-top: 1rem !important;
+}

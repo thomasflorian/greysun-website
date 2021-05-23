@@ -1,0 +1,10 @@
+footer {
+    background: var(--secondary);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.icon {
+    font-size: x-large;
+}
