@@ -8,7 +8,7 @@
 }
 
 .mobileDrawer {
-    color: white !important;
+    color: var(--light) !important;
     background: var(--secondary) !important;
     width: 15rem !important;
     padding-top: 55px;

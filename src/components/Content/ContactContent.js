@@ -1,14 +1,53 @@
-import './ContactContent.css'
 import React, {useEffect} from 'react'
-import {Container, Grid, Typography } from '@material-ui/core'
+import Box from '@material-ui/core/Box'
+import Button from '@material-ui/core/Button'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
+import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
 import PhoneOutlinedIcon from '@material-ui/icons/PhoneOutlined';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
+import { withStyles } from '@material-ui/core/styles'
 
 function ContactContent(props) {
 
     // Reset scroll on page load
     useEffect(() => {window.scrollTo(0,0)}, [])
+
+    const StyledTextField = withStyles({
+        root: {
+            margin: "1.5%",
+            background: "var(--light)",
+            width: '35%',
+            '& label.Mui-focused': {
+                color: 'var(--secondary)',
+
+            },
+            '& label': {
+                color: 'var(--secondary)',
+                fontSize: props.isMobileView ? '0.6rem':'1rem'
+            },
+            '& input': {
+                color: 'var(--secondary',
+            },
+            '& .MuiOutlinedInput-root' : {
+                '& fieldset':{
+                    borderColor: 'var(--secondary)'
+                }
+            }, 
+            '& .MuiOutlinedInput-root:hover' : {
+                '& fieldset':{
+                    borderColor: 'var(--secondary)'
+                }
+            },
+            '& .MuiOutlinedInput-root.Mui-focused:hover' : {
+                '& fieldset':{
+                    borderColor: 'var(--secondary)'
+                }
+            }, 
+        }
+      })(TextField);
 
     return (
         <>
@@ -16,33 +55,51 @@ function ContactContent(props) {
             <Typography className="normal" variant="h2" align="justify">Contact Us</Typography>
         </div>
         <div style={{background:"var(--secondary)", paddingTop:"2rem"}}>
-            <Container style={{paddingBottom:"5rem"}}>
-                <Grid container spacing={4}>
-                    <Grid item xs={12} md={4} align="center">
-                        <Typography variant="h4" paragraph>
-                            <span className="light">Send us a message!</span>
-                        </Typography>
-                        <Typography variant="caption" paragraph>
-                            <span>Fill out the email form or give us a call to get in touch.</span>
-                        </Typography>
-                        <Container style={{display:"flex", flexGrow:"1", alignItems:"center", marginBottom:"1rem"}}>
-                            <PhoneOutlinedIcon style={{marginLeft:"0.5rem", marginRight:"0.5rem"}} fontSize="large"/> 
-                            <Typography variant="body2" align="center">919-757-5218 </Typography>
-                        </Container>
-                        <Container style={{display:"flex", flexGrow:"1", alignItems:"center", marginBottom:"1rem"}}>
-                            <MailOutlineIcon style={{marginLeft:"0.5rem", marginRight:"0.5rem"}} fontSize="large"/> 
-                            <Typography variant="body2" align="center">CONTACTGREYSUN@GMAIL.COM </Typography>
-                        </Container>
-                        <Container style={{display:"flex", flexGrow:"1", alignItems:"center"}}>
-                            <RoomOutlinedIcon style={{marginLeft:"0.5rem", marginRight:"0.5rem"}} fontSize="large"/> 
-                            <Typography variant="body2" align="center">5333 Bent Leaf Dr. RALEIGH, NC 27606 </Typography>
-                        </Container>
+            <Box p={5}>
+                <Grid container spacing={4} justify="center">
+                    <Grid item xs={12} md={5} align="center">
+                        <Box boxShadow={3} style={{maxWidth:"400px", background:"var(--secondary-light)", paddingTop:"2rem", paddingBottom:"2rem", paddingLeft:"0.5rem", paddingRight:"0.5rem", borderRadius:"0.5rem"}}>
+                            <Typography variant="h4" paragraph>
+                                <span className="light">Send us a message!</span>
+                            </Typography>
+                            <Typography variant="caption" paragraph>
+                                <span>Fill out the email form or give us a call to get in touch.</span>
+                            </Typography>
+                            <Container style={{display:"flex", flexGrow:"1", alignItems:"center", marginBottom:"1rem"}}>
+                                <PhoneOutlinedIcon color="primary" style={{marginLeft:"5%", marginRight:"5%"}} fontSize="large"/> 
+                                <Typography variant="body1" align="left">(919) 757-5218 </Typography>
+                            </Container>
+                            <Container style={{display:"flex", flexGrow:"1", alignItems:"center", marginBottom:"1rem"}}>
+                                <MailOutlineIcon color="primary" style={{marginLeft:"5%", marginRight:"5%"}} fontSize="large"/> 
+                                <Typography variant="body1" align="left">contact<wbr/>greysun<wbr/>@gmail<wbr/>.com </Typography>
+                            </Container>
+                            <Container style={{display:"flex", flexGrow:"1", alignItems:"center"}}>
+                                <RoomOutlinedIcon color="primary" style={{marginLeft:"5%", marginRight:"5%"}} fontSize="large"/> 
+                                <Typography variant="body1" align="left">5333 Bent Leaf Drive,<wbr/> Raleigh, North Carolina 27606 </Typography>
+                            </Container>
+                        </Box>
                     </Grid>
-                    <Grid item xs={12} md={8} align="center">
-                        
+                    <Grid item xs={12} md={7} align="center">
+                        <Box boxShadow={3} style={{background:"var(--secondary-light)", paddingTop:"2rem", paddingBottom:"2rem", borderRadius:"0.5rem"}}>
+                            <form>
+                                <Box>
+                                    <StyledTextField name="firstname" label="First Name" variant="filled" />
+                                    <StyledTextField name="lastname" label="Last Name" variant="filled" />
+                                </Box>
+                                <Box>
+                                    <StyledTextField style={{width:"73%"}} name="email" label="Email Address" variant="filled" />
+                                </Box>
+                                <Box>
+                                    <StyledTextField style={{width:"73%"}} rows={3} name="comments" label="Comment or Message" variant="filled" multiline />
+                                </Box>
+                                <Box style={{width:"73%", display:"flex", marginTop:"1rem"}}>
+                                    <Button variant="contained" size="large" color="primary" onClick={() => (undefined)}>Submit</Button>
+                                </Box>
+                            </form>
+                        </Box>
                     </Grid>
                 </Grid>
-            </Container>
+            </Box>
         </div>
         </>
     )

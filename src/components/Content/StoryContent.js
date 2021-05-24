@@ -1,6 +1,8 @@
-import './StoryContent.css'
 import React, {useEffect} from 'react'
-import {Container, Grid, Typography } from '@material-ui/core'
+import Box from '@material-ui/core/Box'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
 import Image from 'material-ui-image'
 
 function StoryContent(props) {
@@ -17,7 +19,7 @@ function StoryContent(props) {
             <Typography className="normal" variant="h6" align="center" paragraph>In memory of Greyson Evan Spector</Typography>
             <Typography variant="body2" align="center">After the death of CEO Cade Spector’s older brother, Cade co-founded GreySun Technologies alongside best friend Jack Mulcrone to immortalize Grey’s legacy and further his message of being proactive to achieve self-improvement. If you’re interested in learning more about Grey’s story, his teachings, and how we plan to carry out his vision of a better world, stay tuned.</Typography>
         </Container>
-        <div style={{background:"var(--secondary)", paddingTop:"2rem"}}>
+        <Box style={{background:"var(--secondary)", paddingTop:"2rem"}}>
             <Container style={{paddingBottom:"5rem"}}>
                 <Typography className="light" variant="h4" align="center" gutterBottom paragraph>Our Founders</Typography>
                 <Grid container spacing={4}>
@@ -47,7 +49,7 @@ function StoryContent(props) {
                     </Grid>
                 </Grid>
             </Container>
-        </div>
+        </Box>
         </>
     )
 }

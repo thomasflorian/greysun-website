@@ -5,8 +5,11 @@
   --primary-dark: #da5e0c;
   --primary-light: rgb(245, 158, 46);
   --secondary: #111111;
-  background: black;
-  color: white;
+  --secondary-dark: black;
+  --secondary-light: #151515;
+  --light: #DDDDDD;
+  background: black !important;
+  color: var(--light);
   margin-top: 65px;
   font-family: Montserrat;
 }
@@ -47,7 +50,7 @@ body {
 }
 
 .card {
-  color: white !important;
+  color: var(--light) !important;
   background: var(--secondary) !important;
   display: flex;
   justify-content: center;
