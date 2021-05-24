@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
@@ -8,46 +8,63 @@ import Typography from '@material-ui/core/Typography'
 import PhoneOutlinedIcon from '@material-ui/icons/PhoneOutlined';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
-import { withStyles } from '@material-ui/core/styles'
+import { styled } from '@material-ui/core/styles'
+
+const styles = {
+    margin: "1.5%",
+    background: "var(--light)",
+    width: '35%',
+    '& label.Mui-focused': {
+        color: 'var(--secondary)',
+    },
+    '& label': {
+        fontSize: '0.8rem'
+    },
+    '& input': {
+        color: 'var(--secondary',
+    },
+    '& .MuiOutlinedInput-root' : {
+        '& fieldset':{
+            borderColor: 'var(--secondary)'
+        }
+    }, 
+    '& .MuiOutlinedInput-root:hover' : {
+        '& fieldset':{
+            borderColor: 'var(--secondary)'
+        }
+    },
+    '& .MuiOutlinedInput-root.Mui-focused:hover' : {
+        '& fieldset':{
+            borderColor: 'var(--secondary)'
+        }
+    }
+}
+const StyledTextField = styled(TextField)(styles)
+
+const blankForm = {firstname: "", lastname: "", email: "", comments: ""}
+const initialErrors = {firstname: false, lastname: false, email: false, comments: false}
 
 function ContactContent(props) {
 
     // Reset scroll on page load
     useEffect(() => {window.scrollTo(0,0)}, [])
+    const [formValues, setFormValues] = useState(blankForm)
+    const [formErrors, setFormErrors] = useState(initialErrors)
 
-    const StyledTextField = withStyles({
-        root: {
-            margin: "1.5%",
-            background: "var(--light)",
-            width: '35%',
-            '& label.Mui-focused': {
-                color: 'var(--secondary)',
+    const handleChange = (event) => {
+        const {name, value} = event.target
+        setFormErrors(prevFormErrors => ({...prevFormErrors, [name]:false}))
+        setFormValues(prevFormValues => ({...prevFormValues, [name]:value}))
+    }
 
-            },
-            '& label': {
-                color: 'var(--secondary)',
-                fontSize: props.isMobileView ? '0.6rem':'1rem'
-            },
-            '& input': {
-                color: 'var(--secondary',
-            },
-            '& .MuiOutlinedInput-root' : {
-                '& fieldset':{
-                    borderColor: 'var(--secondary)'
-                }
-            }, 
-            '& .MuiOutlinedInput-root:hover' : {
-                '& fieldset':{
-                    borderColor: 'var(--secondary)'
-                }
-            },
-            '& .MuiOutlinedInput-root.Mui-focused:hover' : {
-                '& fieldset':{
-                    borderColor: 'var(--secondary)'
-                }
-            }, 
+    const handleSubmit = () => {
+        const emptyFields = Object.entries(formValues).filter(entry => entry[1] === "")
+        if (emptyFields.length === 0) {
+            setFormValues(blankForm)
+        } else {
+            emptyFields.forEach(entry => setFormErrors(prevFormErrors => ({...prevFormErrors, [entry[0]]:true})))
         }
-      })(TextField);
+    }
 
     return (
         <>
@@ -79,21 +96,21 @@ function ContactContent(props) {
                             </Container>
                         </Box>
                     </Grid>
-                    <Grid item xs={12} md={7} align="center">
+                    <Grid item xs={12} md={7} align="center"> 
                         <Box boxShadow={3} style={{background:"var(--secondary-light)", paddingTop:"2rem", paddingBottom:"2rem", borderRadius:"0.5rem"}}>
                             <form>
                                 <Box>
-                                    <StyledTextField name="firstname" label="First Name" variant="filled" />
-                                    <StyledTextField name="lastname" label="Last Name" variant="filled" />
+                                    <StyledTextField error={formErrors.firstname} type="text" name="firstname" label="First Name" variant="filled" value={formValues.firstname} onChange={handleChange} />
+                                    <StyledTextField error={formErrors.lastname} type="text" name="lastname" label="Last Name" variant="filled" value={formValues.lastname} onChange={handleChange} />
                                 </Box>
                                 <Box>
-                                    <StyledTextField style={{width:"73%"}} name="email" label="Email Address" variant="filled" />
+                                    <StyledTextField error={formErrors.email} type="email" style={{width:"73%"}} name="email" label="Email Address" variant="filled" value={formValues.email} onChange={handleChange} />
                                 </Box>
                                 <Box>
-                                    <StyledTextField style={{width:"73%"}} rows={3} name="comments" label="Comment or Message" variant="filled" multiline />
+                                    <StyledTextField error={formErrors.comments} type="text" style={{width:"73%"}} rows={3} name="comments" label="Comment or Message" variant="filled" multiline value={formValues.comments} onChange={handleChange} />
                                 </Box>
                                 <Box style={{width:"73%", display:"flex", marginTop:"1rem"}}>
-                                    <Button variant="contained" size="large" color="primary" onClick={() => (undefined)}>Submit</Button>
+                                    <Button variant="contained" size="large" color="primary" onClick={handleSubmit}>Submit</Button>
                                 </Box>
                             </form>
                         </Box>

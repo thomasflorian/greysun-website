@@ -31,7 +31,7 @@ function StoryContent(props) {
                         </Typography>
                         <Container>
                             <Typography variant="caption">
-                                <span>Cade Spector is Co-Founder and CEO of GreySun Technologies, where he works to maintain cohesion between his values, his team, and his products to create a better world imagined by his late brother Grey. Cade is an experienced Co-Founder of a tax-exempt non-profit, suburban apiary initiative, and inventor of three patented technologies with a demonstrated history in competitive debate – stemming from his relationship with his three brothers – and technology communication. Cade pursues a degree in Philosophy at Duke University and plans on attending medical school in his future.</span>
+                                <span>Cade Spector is Co-Founder and CEO of GreySun Technologies. He works to maintain cohesion between his values, his team, and his products to create a better world imagined by his late brother Grey. Cade is an experienced Co-Founder of a tax-exempt non-profit, suburban apiary initiative, and inventor of three patented technologies with a demonstrated history in competitive debate – stemming from his relationship with his three brothers – and technology communication. He is pursuing a degree in Philosophy at Duke University and plans on attending medical school in his future.</span>
                             </Typography>
                         </Container>
                     </Grid>
@@ -43,7 +43,7 @@ function StoryContent(props) {
                         </Typography>
                         <Container>
                             <Typography variant="caption">
-                                <span>Jack Mulcrone is Co-Founder and COO of GreySun Technologies.  He is responsible for overseeing and facilitating the daily operations of the company, as well as providing direct support to all employees and staff. Previously, Jack designed the Vernon Hills Energy Farm: a high school landmark with 15 wind turbines and an Energy Education Classroom complete with a solar panel array, rain water harvesting system, and geothermal heating pads. He is pursuing a degree from Duke University with a major in Philosophy, a minor in Chemistry, and a certificate in Philosophy, Politics, and Economics.</span>
+                                <span>Jack Mulcrone is Co-Founder and COO of GreySun Technologies.  He is responsible for overseeing and facilitating the daily operations of the company, as well as providing direct support to all employees and staff. Previously, Jack designed the Vernon Hills Energy Farm: a high school landmark with 15 wind turbines and an energy education classroom complete with a solar panel array, rain water harvesting system, and geothermal heating pads. He is pursuing a degree from Duke University with a major in Philosophy, a minor in Chemistry, and a certificate in Philosophy, Politics, and Economics.</span>
                             </Typography>
                         </Container>
                     </Grid>
