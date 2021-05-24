@@ -33,7 +33,7 @@ function NavComponent(props) {
     <AppBar position="fixed" color="secondary" >
       <Toolbar className="toolbar">
         <Typography style={props.isMobileView ? {textAlign:"center", flexGrow:"2"} : {textAlign:"start", flexGrow:"1"}} variant="h4">
-          Greysun
+          GreySun
         </Typography>
         <div className="elements">
           { !props.isMobileView ? toolbarComponents : 

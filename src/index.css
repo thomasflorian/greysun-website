@@ -2,10 +2,12 @@
 
 :root {
   --primary: #df731a;
+  --primary-dark: #da5e0c;
+  --primary-light: rgb(245, 158, 46);
   --secondary: #111111;
   background: black;
   color: white;
-  margin-top: 55px;
+  margin-top: 65px;
   font-family: Montserrat;
 }
 
@@ -17,6 +19,40 @@ body {
 .bold {
   margin: 0.5rem 0 !important;
   font-weight: 700 !important;
+}
+
+.normal {
+  font-weight: 400 !important;
+}
+
+.light {
+  font-weight: 100 !important;
+}
+
+.primary-color {
+  color: var(--primary) !important;
+}
+
+.primary-background {
+  background-color: var(--primary) !important;
+}
+
+.jumbotron {
+  background:linear-gradient(0.25turn, var(--primary-light), var(--primary-dark));
+  display: flex;
+  flex-grow: 1;
+  height: 20rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  color: white !important;
+  background: var(--secondary) !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
 
 #space {
