@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useAuth } from '../contexts/AuthContext'
 import SignIn from './Modal/SignIn'
 import SignUp from './Modal/SignUp'
 import { styled } from '@material-ui/core/styles';
@@ -7,6 +8,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Box from '@material-ui/core/Box'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button';
 
 const modalStyles = {
   '& #modal-div':{
@@ -62,9 +64,19 @@ export const StyledTextField = styled(TextField)(textStyles)
 export default function LoginModalComponent(props) {
 
   const [isSigningIn, setIsSigningIn] = useState(true)
+  const {currUser, signout} = useAuth()
+
+  useEffect(() => {
+    setIsSigningIn(true)
+  }, [props.open])
 
   const toggleState = () => {
     setIsSigningIn(prevState => !prevState)
+  }
+
+  async function handleSignout() {
+    props.handleClose()
+    setTimeout(() => signout(), 200)
   }
 
   return (
@@ -80,7 +92,7 @@ export default function LoginModalComponent(props) {
       >
         <Fade in={props.open}>
           <Box boxShadow={3} id="modal-div">
-            {isSigningIn ? <SignIn toggleState={toggleState} isMobileView={props.isMobileView}/> : <SignUp toggleState={toggleState} isMobileView={props.isMobileView}/>}
+            {currUser != null ? <Button size="large" variant="contained" color="primary" onClick={handleSignout}>Sign Out</Button>:(isSigningIn ? <SignIn toggleState={toggleState} {...props} /> : <SignUp toggleState={toggleState} {...props} />)}
           </Box>
         </Fade>
       </LoginModal>

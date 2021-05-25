@@ -1,21 +1,62 @@
 import {StyledTextField} from '../LoginModalComponent'
-import React from "react"
+import React, { useState } from "react"
+import {useHistory} from 'react-router-dom'
 import Box from "@material-ui/core/Box"
 import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
+import { useAuth } from '../../contexts/AuthContext'
+import Chip from '@material-ui/core/Chip'
+
+const blankForm = {email: "", password: ""}
 
 function SignIn(props) {
+
+    const [formValues, setFormValues] = useState(blankForm)
+    const [errorState, setErrorState] = useState(false)
+    const {signin} = useAuth()
+    const history = useHistory()
+
+    const handleChange = (event) => {
+        const {name, value} = event.target
+        setFormValues(prevFormValues => ({...prevFormValues, [name]:value}))
+    }
+
+    async function handleSubmit() {
+        if (formValues.email ===  "" || formValues.password ===  "" || formValues.confirm === "") {
+            return setErrorState("Email and password are requred!")
+        }
+        try {
+            setErrorState(false)
+            setFormValues(blankForm)
+            await signin(formValues.email, formValues.password)
+            props.handleClose()
+            history.push("/dashboard")
+        } catch(error) {
+            console.log(error)
+            if (error.code === "auth/wrong-password") {
+                return setErrorState("Incorrect username or password!")
+            }
+            if (error.code === "auth/invalid-email") {
+                return setErrorState("Invalid email address!")
+            }
+            setErrorState("Failed to login!")
+        }
+    }
+
     return (
         <>
         <Typography className="light" variant="h5" gutterBottom>Log into GreySun Account</Typography>
         <Box style={{width:"100%", display: "flex", justifyContent:"center"}}>
-            <StyledTextField type="text" name="email" label="Email" variant="filled" />
+            {errorState && <Chip size="small" style={{color:"var(--light)", background:"#eb4034", width:"65%"}} label={errorState} />}
         </Box>
         <Box style={{width:"100%", display: "flex", justifyContent:"center"}}>
-            <StyledTextField type="password" name="password" label="Password" variant="filled" />
+            <StyledTextField error={errorState !== false} type="text" name="email" label="Email" variant="filled" value={formValues.email} onChange={handleChange} />
+        </Box>
+        <Box style={{width:"100%", display: "flex", justifyContent:"center"}}>
+            <StyledTextField error={errorState !== false} type="password" name="password" label="Password" variant="filled" value={formValues.password} onChange={handleChange} />
         </Box>
         <Box style={{width:"65%", display:"flex", marginTop:"1rem", alignItems:"center"}}>
-            <Button style={{minWidth:"80px"}} size={props.isMobileView ? "small":"large"} variant="contained" color="primary" onClick={() => alert("Accounts not yet implemented")}>Sign In</Button>
+            <Button style={{minWidth:"80px"}} size={props.isMobileView ? "small":"large"} variant="contained" color="primary" onClick={handleSubmit}>Sign In</Button>
             <Typography onClick={props.toggleState} style={{paddingLeft:"0.5rem", marginRight:"auto", marginLeft:"auto", textAlign:"center"}} variant="caption">{props.isMobileView? "Create an account!":"No GreySun account? Sign Up!"}</Typography>
         </Box>
         </>

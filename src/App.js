@@ -1,11 +1,11 @@
 import './App.css';
 import {BrowserRouter as Router} from 'react-router-dom'
 import {ThemeProvider, createMuiTheme, responsiveFontSizes} from '@material-ui/core/styles'
-
 import NavComponent from './components/NavComponent'
 import ContentComponent from './components/ContentComponent'
 import FooterComponent from './components/FooterComponent'
 import React, { useState } from 'react'
+import { AuthProvider } from './contexts/AuthContext';
 
 const theme = responsiveFontSizes(createMuiTheme({
   typography: {
@@ -30,9 +30,11 @@ function App() {
     <React.StrictMode>
       <Router>
         <ThemeProvider theme={theme}>
-          <NavComponent isMobileView={isMobileView} />
-          <ContentComponent isMobileView={isMobileView} />
-          <FooterComponent isMobileView={isMobileView} />
+          <AuthProvider>
+            <NavComponent isMobileView={isMobileView} />
+            <ContentComponent isMobileView={isMobileView} />
+            <FooterComponent isMobileView={isMobileView} />
+          </AuthProvider>
         </ThemeProvider>
       </Router>
     </React.StrictMode>

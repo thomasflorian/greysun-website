@@ -9,7 +9,8 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
-import { Box, MenuItem } from '@material-ui/core'
+import Box from '@material-ui/core/Box'
+import MenuItem from '@material-ui/core/MenuItem'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LoginModalComponent from './LoginModalComponent'
 
