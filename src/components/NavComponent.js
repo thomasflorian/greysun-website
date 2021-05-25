@@ -41,7 +41,7 @@ function NavComponent(props) {
 
   return (
     <>
-    <LoginModalComponent open={isModalOpen} handleOpen={handleModalOpen} handleClose={handleModalClose}/>
+    <LoginModalComponent isMobileView={props.isMobileView} open={isModalOpen} handleOpen={handleModalOpen} handleClose={handleModalClose}/>
     <AppBar position="fixed" color="secondary" >
       <Toolbar className="toolbar">
         <Typography style={props.isMobileView ? {textAlign:"center", flexGrow:"2"} : {textAlign:"start", flexGrow:"1"}} variant="h4">
@@ -55,7 +55,7 @@ function NavComponent(props) {
               <MenuIcon fontSize="large" />}
             </IconButton> }
             <IconButton style={{marginLeft:"8%"}} color="inherit" aria-label="login" onClick={handleModalOpen}>
-            <AccountCircleIcon fontSize="large" />
+            <AccountCircleIcon fontSize="large" color={isModalOpen ? "primary":"inherit"} />
             </IconButton>
           </Box>
       </Toolbar>

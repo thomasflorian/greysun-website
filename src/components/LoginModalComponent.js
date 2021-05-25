@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
+import SignIn from './Modal/SignIn'
+import SignUp from './Modal/SignUp'
 import { styled } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Box from '@material-ui/core/Box'
-import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
-import Typography from '@material-ui/core/Typography'
 
 const modalStyles = {
   '& #modal-div':{
@@ -16,13 +16,11 @@ const modalStyles = {
     width:"80%",
     maxWidth:"500px",
     minWidth:"300px",
-    height:"300px",
     alignContent: "center",
     justifyContent: "center",
-    marginTop:"10%",
-    marginRight:"auto",
-    marginLeft:"auto",
-    borderRadius:"0.25rem"
+    margin: "8rem auto 0 auto",
+    borderRadius:"0.25rem",
+    padding: "3rem 0.5rem"
   },
   '& #modal-div:focus':{
     outline: "transparent"
@@ -59,9 +57,15 @@ const textStyles = {
       }
   }
 }
-const StyledTextField = styled(TextField)(textStyles)
+export const StyledTextField = styled(TextField)(textStyles)
 
 export default function LoginModalComponent(props) {
+
+  const [isSigningIn, setIsSigningIn] = useState(true)
+
+  const toggleState = () => {
+    setIsSigningIn(prevState => !prevState)
+  }
 
   return (
     <div>
@@ -76,16 +80,7 @@ export default function LoginModalComponent(props) {
       >
         <Fade in={props.open}>
           <Box boxShadow={3} id="modal-div">
-            <Typography className="light" variant="h5" gutterBottom>GreySun Account</Typography>
-            <Box style={{width:"100%", display: "flex", justifyContent:"center"}}>
-              <StyledTextField type="text" name="email" label="Email" variant="filled" />
-            </Box>
-            <Box style={{width:"100%", display: "flex", justifyContent:"center"}}>
-              <StyledTextField type="password" name="password" label="Password" variant="filled" />
-            </Box>
-            <Box style={{width:"65%", display:"flex", marginTop:"1rem"}}>
-              <Button size="large" variant="contained" color="primary" onClick={() => alert("Accounts not yet implemented")}>Sign In</Button>
-            </Box>
+            {isSigningIn ? <SignIn toggleState={toggleState} isMobileView={props.isMobileView}/> : <SignUp toggleState={toggleState} isMobileView={props.isMobileView}/>}
           </Box>
         </Fade>
       </LoginModal>
