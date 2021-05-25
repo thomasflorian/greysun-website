@@ -76,7 +76,11 @@ export default function LoginModalComponent(props) {
 
   async function handleSignout() {
     props.handleClose()
-    setTimeout(() => signout(), 200)
+    try {
+      setTimeout(() => signout(), 200)
+    } catch (error) {
+      alert("Server Error: Failed to logout")
+    }
   }
 
   return (
@@ -90,7 +94,7 @@ export default function LoginModalComponent(props) {
           timeout: 500,
         }}
       >
-        <Fade in={props.open}>
+        <Fade in={props.open} timeout={{enter: 300, exit:0}}>
           <Box boxShadow={3} id="modal-div">
             {currUser != null ? <Button size="large" variant="contained" color="primary" onClick={handleSignout}>Sign Out</Button>:(isSigningIn ? <SignIn toggleState={toggleState} {...props} /> : <SignUp toggleState={toggleState} {...props} />)}
           </Box>
