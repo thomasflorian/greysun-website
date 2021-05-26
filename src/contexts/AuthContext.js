@@ -1,7 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react'
+import firebase from 'firebase'
 import { auth } from '../firebase'
 
 const AuthContext = React.createContext()
+const firestore = firebase.firestore()
 
 export function useAuth() {
     return useContext(AuthContext)
@@ -12,8 +14,9 @@ export function AuthProvider({children}) {
     const [currUser, setCurrUser] = useState()
     const [loading, setLoading] = useState(true)
 
-    function signup(email, password) {
-        return auth.createUserWithEmailAndPassword(email, password)
+    async function signup(email, password) {
+        const credentials = await auth.createUserWithEmailAndPassword(email, password)
+        await firestore.collection('users').doc(credentials.user.uid).set({blows:[]})
     }
 
     function signin(email, password) {
@@ -29,7 +32,7 @@ export function AuthProvider({children}) {
             setCurrUser(user)
             setLoading(false)
         })
-        return unsub
+        return [unsub]
     }, [])
 
     const value = {

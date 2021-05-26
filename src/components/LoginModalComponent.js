@@ -30,7 +30,7 @@ const modalStyles = {
 }
 const LoginModal = styled(Modal)(modalStyles)
 
-const textStyles = {
+let textStyles = {
   margin: "1.5%",
   background: "var(--light)",
   width:"65%",
@@ -59,16 +59,22 @@ const textStyles = {
       }
   }
 }
-export const StyledTextField = styled(TextField)(textStyles)
 
 export default function LoginModalComponent(props) {
 
   const [isSigningIn, setIsSigningIn] = useState(true)
+  const [StyledTextField, setStyledTextField] = useState(styled(TextField)(textStyles))
   const {currUser, signout} = useAuth()
 
   useEffect(() => {
     setIsSigningIn(true)
   }, [props.open])
+
+  useEffect(() => {
+    props.isMobileView ? textStyles.width = "80%" : textStyles.width = "65%"
+    setStyledTextField(styled(TextField)(textStyles))
+  }, [props.isMobileView])
+
 
   const toggleState = () => {
     setIsSigningIn(prevState => !prevState)
@@ -96,7 +102,7 @@ export default function LoginModalComponent(props) {
       >
         <Fade in={props.open} timeout={{enter: 300, exit:0}}>
           <Box boxShadow={3} id="modal-div">
-            {currUser != null ? <Button size="large" variant="contained" color="primary" onClick={handleSignout}>Sign Out</Button>:(isSigningIn ? <SignIn toggleState={toggleState} {...props} /> : <SignUp toggleState={toggleState} {...props} />)}
+            {currUser != null ? <Button size="large" variant="contained" color="primary" onClick={handleSignout}>Sign Out</Button>:(isSigningIn ? <SignIn toggleState={toggleState} StyledTextField={StyledTextField} {...props} /> : <SignUp toggleState={toggleState} StyledTextField={StyledTextField} {...props} />)}
           </Box>
         </Fade>
       </LoginModal>

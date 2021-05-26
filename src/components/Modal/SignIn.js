@@ -1,4 +1,3 @@
-import {StyledTextField} from '../LoginModalComponent'
 import React, { useState } from "react"
 import {useHistory} from 'react-router-dom'
 import Box from "@material-ui/core/Box"
@@ -9,7 +8,7 @@ import Chip from '@material-ui/core/Chip'
 
 const blankForm = {email: "", password: ""}
 
-function SignIn(props) {
+function SignIn({StyledTextField, ...props}) {
 
     const [formValues, setFormValues] = useState(blankForm)
     const [errorState, setErrorState] = useState(false)
@@ -32,7 +31,6 @@ function SignIn(props) {
             props.handleClose()
             history.push("/dashboard")
         } catch(error) {
-            console.log(error)
             if (error.code === "auth/wrong-password") {
                 return setErrorState("Incorrect username or password!")
             }
@@ -47,7 +45,7 @@ function SignIn(props) {
         <>
         <Typography className="light" variant="h5" gutterBottom>Log into GreySun Account</Typography>
         <Box style={{width:"100%", display: "flex", justifyContent:"center"}}>
-            {errorState && <Chip size="small" style={{color:"var(--light)", background:"#eb4034", width:"65%"}} label={errorState} />}
+            {errorState && <Chip size="small" style={{color:"var(--light)", background:"#eb4034", width: props.isMobileView ? "80%": "65%", fontSize: props.isMobileView ? "0.6rem": "0.8rem"}} label={errorState} />}
         </Box>
         <Box style={{width:"100%", display: "flex", justifyContent:"center"}}>
             <StyledTextField error={errorState !== false} type="text" name="email" label="Email" variant="filled" value={formValues.email} onChange={handleChange} />
@@ -55,8 +53,8 @@ function SignIn(props) {
         <Box style={{width:"100%", display: "flex", justifyContent:"center"}}>
             <StyledTextField error={errorState !== false} type="password" name="password" label="Password" variant="filled" value={formValues.password} onChange={handleChange} />
         </Box>
-        <Box style={{width:"65%", display:"flex", marginTop:"1rem", alignItems:"center"}}>
-            <Button style={{minWidth:"80px"}} size={props.isMobileView ? "small":"large"} variant="contained" color="primary" onClick={handleSubmit}>Sign In</Button>
+        <Box style={{width: props.isMobileView ? "80%":"65%", display:"flex", marginTop:"1rem", alignItems:"center"}}>
+            <Button style={{minWidth:"80px"}} size="large" variant="contained" color="primary" onClick={handleSubmit}>Sign In</Button>
             <Typography onClick={props.toggleState} style={{paddingLeft:"0.5rem", marginRight:"auto", marginLeft:"auto", textAlign:"center"}} variant="caption">{props.isMobileView? "Create an account!":"No GreySun account? Sign Up!"}</Typography>
         </Box>
         </>

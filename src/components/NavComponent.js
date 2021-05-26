@@ -1,5 +1,6 @@
 import './NavComponent.css'
 import React, { useState } from 'react'
+import { useAuth } from '../contexts/AuthContext'
 import {NavLink} from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -15,14 +16,16 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LoginModalComponent from './LoginModalComponent'
 
 const links = [
-{label:"GreyBand", to:"/"},
-{label:"Our Story", to:"/story"},
-{label:"Contact", to:"/contact"}]
+{label:"GreyBand", to:"/", requireAuth: false},
+{label:"Our Story", to:"/story", requireAuth: false},
+{label:"Contact", to:"/contact", requireAuth: false},
+{label:"Dashboard", to:"/dashboard", requireAuth: true}]
 
 function NavComponent(props) {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const {currUser} = useAuth()
 
   const handleModalOpen = () => {
     setIsModalOpen(true)
@@ -32,11 +35,11 @@ function NavComponent(props) {
     setIsModalOpen(false)
   }
 
-  const toolbarComponents = links.map((link,i) => (
+  const toolbarComponents = links.filter(link => link.requireAuth === false || currUser).map((link,i) => (
     <Link key={i} underline="none" color="inherit" activeClassName="active" exact component={NavLink} to={link.to} style={{display:"flex"}}><MenuItem>{link.label}</MenuItem></Link>
   ))
 
-  const drawerComponents = links.map((link,i) => (
+  const drawerComponents = links.filter(link => link.requireAuth === false || currUser).map((link,i) => (
     <Link key={i} underline="none" color="inherit" activeClassName="active" exact component={NavLink} to={link.to} onClick={() => setIsMenuOpen(false)}><MenuItem className="mobileLinks">{link.label}</MenuItem></Link>
   ))
 

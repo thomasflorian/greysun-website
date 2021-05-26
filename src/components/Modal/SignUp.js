@@ -1,4 +1,3 @@
-import { StyledTextField } from '../LoginModalComponent'
 import React, { useState } from "react"
 import { useHistory } from 'react-router-dom'
 import Box from "@material-ui/core/Box"
@@ -9,11 +8,10 @@ import { useAuth } from '../../contexts/AuthContext'
 
 const blankForm = {email: "", password: "", confirm: ""}
 
-function SignUp(props) {
+function SignUp({StyledTextField, ...props}) {
 
     const [formValues, setFormValues] = useState(blankForm)
     const [errorState, setErrorState] = useState(false)
-    console.log(formValues)
     const history = useHistory()
     const { signup } = useAuth()
 
@@ -42,7 +40,6 @@ function SignUp(props) {
             history.push("/dashboard")
 
         } catch(error) {
-            console.log(error)
             if (error.code === "auth/invalid-email") {
                 return setErrorState("Invalid email address!")
             }
@@ -57,7 +54,7 @@ function SignUp(props) {
         <>
         <Typography className="light" variant="h5" gutterBottom>Create GreySun Account</Typography>
         <Box style={{width:"100%", display: "flex", justifyContent:"center"}}>
-            {errorState && <Chip size="small" style={{color:"var(--light)", background:"#eb4034", width:"65%"}} label={errorState} />}
+            {errorState && <Chip size="small" style={{color:"var(--light)", background:"#eb4034", width: props.isMobileView ? "80%": "65%", fontSize: props.isMobileView ? "0.6rem": "0.8rem"}} label={errorState} />}
         </Box>
         <Box style={{width:"100%", display: "flex", justifyContent:"center"}}>
             <StyledTextField error={errorState !== false} type="text" name="email" label="Email" variant="filled" value={formValues.email} onChange={handleChange} />
@@ -68,8 +65,8 @@ function SignUp(props) {
         <Box style={{width:"100%", display: "flex", justifyContent:"center"}}>
             <StyledTextField error={errorState !== false} type="password" name="confirm" label="Confirm Password" variant="filled" value={formValues.confirm} onChange={handleChange} />
         </Box>
-        <Box style={{width:"65%", display:"flex", marginTop:"1rem", alignItems:"center"}}>
-            <Button style={{minWidth:"80px"}} size={props.isMobileView ? "small":"large"} variant="contained" color="primary" onClick={handleSubmit}>Sign Up</Button>
+        <Box style={{width: props.isMobileView ? "80%":"65%", display:"flex", marginTop:"1rem", alignItems:"center"}}>
+            <Button style={{minWidth:"80px"}} size="large" variant="contained" color="primary" onClick={handleSubmit}>Sign Up</Button>
             <Typography onClick={props.toggleState} style={{paddingLeft:"0.5rem", marginRight:"auto", marginLeft:"auto", textAlign:"center"}} variant="caption">{props.isMobileView? "Existing account?":"Already have an account? Log in!"}</Typography>
         </Box>
         </>
