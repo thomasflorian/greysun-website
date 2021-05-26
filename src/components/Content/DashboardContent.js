@@ -26,7 +26,7 @@ function DashboardContent(props) {
     // Reset scroll on page load
     useEffect(() => {window.scrollTo(0,0)}, [])
     // Loads blows
-    useEffect(() => getBlows(), [])
+    useEffect(getBlows, [currUser.uid])
 
     const blowComponents = blows.map((blow, i) => (<li key={i}>{`BAC was ${blow.bac} at ${new Date(1000*blow.timestamp.seconds).toUTCString()}`}</li>))
 
