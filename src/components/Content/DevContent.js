@@ -67,7 +67,8 @@ function DevContent(props) {
         if (formValues.bac ===  "" || formValues.date ===  "" || formValues.time === "") {
             return alert("Invalid Input")
         }
-        const blow = {bac: formValues.bac, timestamp: new firebase.firestore.Timestamp(new Date(formValues.date + " " + formValues.time).getTime().valueOf()/1000, 0)}
+        const blow = {bac: formValues.bac, timestamp: firebase.firestore.Timestamp.fromDate(new Date(formValues.date + "T" + formValues.time))}
+        console.log(blow)
         firestore.collection('users').doc(currUser.uid).get().then(async item => {
             const blows = item.data().blows
             blows.push(blow)

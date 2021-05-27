@@ -27,8 +27,7 @@ function DashboardContent(props) {
     useEffect(() => {window.scrollTo(0,0)}, [])
     // Loads blows
     useEffect(getBlows, [currUser.uid])
-
-    const blowComponents = blows.map((blow, i) => (<li key={i}>{`BAC was ${blow.bac} at ${new Date(1000*blow.timestamp.seconds).toUTCString()}`}</li>))
+    const blowComponents = blows.map((blow, i) => (<li key={i}>{`BAC was ${blow.bac} at ${blow.timestamp.toDate().getHours()}:${blow.timestamp.toDate().getMinutes()} on ${blow.timestamp.toDate().toDateString()}`}</li>))
 
     return (
         <Container style={{height:"600px", display:"flex", flexWrap:"wrap", justifyContent:"center", textAlign:"center", alignContent:"start"}}>
