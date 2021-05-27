@@ -9,14 +9,14 @@ export function useAuth() {
     return useContext(AuthContext)
 }
 
-export function AuthProvider({children}) {
+export function AuthProvider({ children }) {
 
     const [currUser, setCurrUser] = useState()
     const [loading, setLoading] = useState(true)
 
     async function signup(email, password) {
         const credentials = await auth.createUserWithEmailAndPassword(email, password)
-        await firestore.collection('users').doc(credentials.user.uid).set({blows:[]})
+        await firestore.collection('users').doc(credentials.user.uid).set({ blows: [] })
     }
 
     function signin(email, password) {
