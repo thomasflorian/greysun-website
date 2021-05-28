@@ -55,11 +55,11 @@ function SignIn({ StyledTextField, ...props }) {
                 <StyledTextField error={errorState !== false} type="password" name="password" label="Password" variant="filled" value={formValues.password} onChange={handleChange} />
             </Box>
             <Box style={{ width: props.isMobileView ? "80%" : "65%", display: "flex", alignItems: "center", padding: "0" }}>
-                <Typography variant="caption" style={{color:"grey", fontSize: "0.7rem", cursor: "pointer"}}>Forgot Password?</Typography>
+                <Typography variant="caption" style={{color:"var(--light)", fontSize: "0.7rem", cursor: "pointer"}}>Forgot Password?</Typography>
             </Box>
             <Box style={{ width: props.isMobileView ? "80%" : "65%", display: "flex", marginTop: "0.5rem", alignItems: "center" }}>
                 <Button style={{ minWidth: "80px" }} size="large" variant="contained" color="primary" onClick={handleSubmit}>Sign In</Button>
-                <Typography onClick={props.toggleState} style={{ paddingLeft: "0.5rem", marginRight: "auto", marginLeft: "auto", textAlign: "center", textDecoration: "underline", cursor: "pointer"}} variant="caption">{props.isMobileView ? "Create an account!" : "No GreySun account? Sign Up!"}</Typography>
+                <Typography onClick={props.toggleState} style={{ paddingLeft: "0.5rem", marginRight: "auto", marginLeft: "auto", textAlign: "center", textDecoration: "underline", cursor: "pointer", color: "var(--light)"}} variant="caption">{props.isMobileView ? "Create an account!" : "No GreySun account? Sign Up!"}</Typography>
             </Box>
         </>
     )

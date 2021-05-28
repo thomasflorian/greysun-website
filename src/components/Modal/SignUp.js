@@ -68,7 +68,7 @@ function SignUp({ StyledTextField, ...props }) {
             </Box>
             <Box style={{ width: props.isMobileView ? "80%" : "65%", display: "flex", marginTop: "1rem", alignItems: "center" }}>
                 <Button style={{ minWidth: "80px" }} size="large" variant="contained" color="primary" onClick={handleSubmit}>Sign Up</Button>
-                <Typography onClick={props.toggleState} style={{ paddingLeft: "0.5rem", marginRight: "auto", marginLeft: "auto", textAlign: "center", textDecoration: "underline", cursor: "pointer" }} variant="caption">{props.isMobileView ? "Existing account?" : "Already have an account? Log in!"}</Typography>
+                <Typography onClick={props.toggleState} style={{ paddingLeft: "0.5rem", marginRight: "auto", marginLeft: "auto", textAlign: "center", textDecoration: "underline", cursor: "pointer", color:"var(--light)" }} variant="caption">{props.isMobileView ? "Existing account?" : "Already have an account? Log in!"}</Typography>
             </Box>
         </>
     )

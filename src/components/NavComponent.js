@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -40,6 +40,7 @@ function NavComponent(props) {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const history = useHistory()
   const { currUser } = useAuth()
 
   const handleModalOpen = () => {
@@ -63,9 +64,9 @@ function NavComponent(props) {
       <LoginModalComponent isMobileView={props.isMobileView} open={isModalOpen} handleOpen={handleModalOpen} handleClose={handleModalClose} />
       <AppBar position="fixed" color="secondary" >
         <Toolbar>
-          <Typography style={props.isMobileView ? { textAlign: "center", flexGrow: "2" } : { textAlign: "start", flexGrow: "1" }} variant="h4">
+          <Typography onClick={() => history.push("/")} style={props.isMobileView ? { textAlign: "center", flexGrow: "2", cursor: "pointer" } : { textAlign: "start", flexGrow: "1", cursor: "pointer" }} variant="h4">
             GreySun
-        </Typography>
+          </Typography>
           <Box style={{ display: "flex", justifyContent: "flex-end" }}>
             {!props.isMobileView ? toolbarComponents :
               <IconButton edge="end" color="inherit" aria-label="menu" onClick={() => setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen)}>
