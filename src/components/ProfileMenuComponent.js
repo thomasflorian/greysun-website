@@ -22,7 +22,7 @@ export default function ProfileMenuComponent({isProfileOpen, anchorEl, handlePro
     <Menu open={isProfileOpen} anchorEl={anchorEl} onClose={handleProfileClose} style={{ marginTop: "3rem" }} classes={{paper: classes.menuPaper, list: classes.menuList}}>
         {!currUser && <MenuItem onClick={() => { history.push("/signup"); handleProfileClose() }}>Sign up</MenuItem>}
         {!currUser && <MenuItem onClick={() => { history.push("/signin"); handleProfileClose() }} >Log in</MenuItem>}
-        {!currUser && <MenuItem onClick={handleSignout}>Sign out</MenuItem>}
+        {currUser && <MenuItem onClick={handleSignout}>Sign out</MenuItem>}
     </Menu>
   );
 }
