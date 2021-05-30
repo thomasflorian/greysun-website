@@ -32,11 +32,11 @@ function DashboardContent(props) {
             }
         })
     }
-
+    
     // Reset scroll on page load
     useEffect(() => { window.scrollTo(0, 0) }, [])
     // Loads blows
-    useEffect(getBlows, [currUser.uid])
+    useEffect(getBlows, [currUser.uid, signout])
     const blowComponents = blows.map((blow, i) => (<Box style={{ display: "flex", justifyContent: "center", width: "100%" }} key={i}><div style={{ background: i === blows.length - 1 ? "var(--primary" : "var(--secondary-light", width: "20rem", padding: i === blows.length - 1 ? "0.8rem" : "0.5rem", margin: "0.2rem", borderRadius: "1rem" }}><Typography variant={i === blows.length - 1 ? "body2" : "caption"} >{`BAC was ${blow.bac} at ${(blow.timestamp.toDate().getHours() + 11) % 12 + 1}:${String(blow.timestamp.toDate().getMinutes()).padStart(2, '0')} ${blow.timestamp.toDate().getHours() >= 12 ? "PM" : "AM"} on ${blow.timestamp.toDate().toDateString()}`}</Typography></div></Box>))
 
     return (
