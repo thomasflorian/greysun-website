@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { NavLink, useHistory } from 'react-router-dom'
+
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -12,7 +13,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import Box from '@material-ui/core/Box'
 import MenuItem from '@material-ui/core/MenuItem'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import LoginModalComponent from './LoginModalComponent'
+import ProfileMenuComponent from './ProfileMenuComponent'
 import { styled } from '@material-ui/core'
 
 const activeStyles = {
@@ -24,7 +25,7 @@ const drawerStyles = {
     color: "var(--light)",
     background: "var(--secondary)",
     width: "15rem",
-    paddingTop: "55px"
+    paddingTop: "4rem"
   }
 }
 
@@ -39,16 +40,17 @@ const links = [
 function NavComponent(props) {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const profileRef = useRef(null)
   const history = useHistory()
   const { currUser } = useAuth()
 
-  const handleModalOpen = () => {
-    setIsModalOpen(true)
+  const handleProfileOpen = () => {
+    setIsProfileOpen(true)
   }
 
-  const handleModalClose = () => {
-    setIsModalOpen(false)
+  const handleProfileClose = () => {
+    setIsProfileOpen(false)
   }
 
   const toolbarComponents = links.filter(link => link.requireAuth === false || currUser).map((link, i) => (
@@ -56,17 +58,19 @@ function NavComponent(props) {
   ))
 
   const drawerComponents = links.filter(link => link.requireAuth === false || currUser).map((link, i) => (
-    <Link key={i} underline="none" color="inherit" activeStyle={activeStyles} exact component={NavLink} to={link.to} onClick={() => setIsMenuOpen(false)}><MenuItem style={{fontSize: "x-large", padding: "1rem"}}>{link.label}</MenuItem></Link>
+    <Link key={i} underline="none" color="inherit" activeStyle={activeStyles} exact component={NavLink} to={link.to} onClick={() => setIsMenuOpen(false)}><MenuItem style={{ fontSize: "x-large", padding: "1rem" }}>{link.label}</MenuItem></Link>
   ))
 
   return (
     <>
-      <LoginModalComponent isMobileView={props.isMobileView} open={isModalOpen} handleOpen={handleModalOpen} handleClose={handleModalClose} />
-      <AppBar position="fixed" color="secondary" >
+      <ProfileMenuComponent isProfileOpen={isProfileOpen} handleProfileClose={handleProfileClose} anchorEl={profileRef.current} />
+      <AppBar position="fixed" color="secondary" style={{ height: "4rem" }} >
         <Toolbar>
-          <Typography onClick={() => history.push("/")} style={props.isMobileView ? { textAlign: "center", flexGrow: "2", cursor: "pointer" } : { textAlign: "start", flexGrow: "1", cursor: "pointer" }} variant="h4">
-            GreySun
-          </Typography>
+          <Box style={props.isMobileView ? { textAlign: "center", flexGrow: "2", justifyContent: "flex-start" } : { textAlign: "start", flexGrow: "1" }}>
+            <Typography variant="h4">
+              <span onClick={() => history.push("/")} style={{ cursor: "pointer" }}>GreySun</span>
+            </Typography>
+          </Box>
           <Box style={{ display: "flex", justifyContent: "flex-end" }}>
             {!props.isMobileView ? toolbarComponents :
               <IconButton edge="end" color="inherit" aria-label="menu" onClick={() => setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen)}>
@@ -74,8 +78,8 @@ function NavComponent(props) {
                   <CloseIcon fontSize="large" /> :
                   <MenuIcon fontSize="large" />}
               </IconButton>}
-            <IconButton style={{ marginLeft: "8%" }} color="inherit" aria-label="login" onClick={handleModalOpen}>
-              <AccountCircleIcon fontSize="large" color={isModalOpen ? "primary" : "inherit"} />
+            <IconButton ref={profileRef} style={{ marginLeft: "2%" }} color={isProfileOpen ? "primary" : "inherit"} aria-label="login" onClick={handleProfileOpen}>
+              <AccountCircleIcon fontSize="large" />
             </IconButton>
           </Box>
         </Toolbar>

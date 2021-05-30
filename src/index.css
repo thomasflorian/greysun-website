@@ -10,7 +10,7 @@
   --light: #DDDDDD;
   background: var(--secondary-dark) !important;
   color: var(--light);
-  margin-top: 65px;
+  margin-top: 4rem;
   font-family: Montserrat;
 }
 

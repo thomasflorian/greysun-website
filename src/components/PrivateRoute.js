@@ -7,7 +7,7 @@ function PrivateRoute({ children, ...props}) {
     const {currUser} = useAuth()
 
     return (
-        <Route {...props} children={currUser ? children : <Redirect to="/" />} />
+        <Route {...props} children={currUser ? children : <Redirect to="/signin" />} />
     )
 
 }

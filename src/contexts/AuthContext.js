@@ -14,9 +14,10 @@ export function AuthProvider({ children }) {
     const [currUser, setCurrUser] = useState()
     const [loading, setLoading] = useState(true)
 
-    async function signup(email, password) {
+    async function signup(firstname, lastname, email, password) {
         const credentials = await auth.createUserWithEmailAndPassword(email, password)
-        await firestore.collection('users').doc(credentials.user.uid).set({ blows: [] })
+        const timestamp = new Date()
+        await firestore.collection('users').doc(credentials.user.uid).set({ blows: [], firstname, lastname, accountCreated: firebase.firestore.Timestamp.fromDate(timestamp)})
     }
 
     function signin(email, password) {
@@ -25,6 +26,10 @@ export function AuthProvider({ children }) {
 
     function signout() {
         return auth.signOut()
+    }
+
+    function resetpassword(email) {
+        return auth.sendPasswordResetEmail(email)
     }
 
     useEffect(() => {
@@ -39,7 +44,8 @@ export function AuthProvider({ children }) {
         currUser,
         signup,
         signin,
-        signout
+        signout,
+        resetpassword
     }
 
     return (
