@@ -4,7 +4,6 @@ import { NavLink, useHistory } from 'react-router-dom'
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
@@ -35,6 +34,7 @@ const links = [
   { label: "GreyBand", to: "/", requireAuth: false },
   { label: "Our Story", to: "/story", requireAuth: false },
   { label: "Contact", to: "/contact", requireAuth: false },
+  { label: "Store", to: "/store", requireAuth: false },
   { label: "Dashboard", to: "/dashboard", requireAuth: true }]
 
 function NavComponent(props) {
@@ -66,10 +66,8 @@ function NavComponent(props) {
       <ProfileMenuComponent isProfileOpen={isProfileOpen} handleProfileClose={handleProfileClose} anchorEl={profileRef.current} />
       <AppBar position="fixed" color="secondary" style={{ height: "4rem" }} >
         <Toolbar>
-          <Box style={props.isMobileView ? { textAlign: "center", flexGrow: "2", justifyContent: "flex-start" } : { textAlign: "start", flexGrow: "1" }}>
-            <Typography variant="h4">
-              <span onClick={() => history.push("/")} style={{ cursor: "pointer" }}>GreySun</span>
-            </Typography>
+          <Box style={props.isMobileView ? { textAlign: "center", flexGrow: "2", justifyContent: "center" } : { textAlign: "start", flexGrow: "1" }}>
+          <img onClick={() => history.push("/")} style={{ height:"2.5rem", marginRight:"0.5rem", cursor: "pointer"}} src="./logo.png" alt="logo"/>
           </Box>
           <Box style={{ display: "flex", justifyContent: "flex-end" }}>
             {!props.isMobileView ? toolbarComponents :
@@ -91,5 +89,6 @@ function NavComponent(props) {
   )
 }
 
-
 export default NavComponent
+
+

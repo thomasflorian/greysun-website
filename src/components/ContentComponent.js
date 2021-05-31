@@ -18,6 +18,7 @@ function ContentComponent(props) {
             <Route exact path="/" children={<GreybandContent {...props} />}></Route>
             <Route exact path="/story" children={<StoryContent {...props} />}></Route>
             <Route exact path="/contact" children={<ContactContent {...props} />}></Route>
+            <Route exact path="/store" component={() => {window.location.href = 'https://greysuntech.company.site'}}></Route>
             <Route exact path="/signup" children={<SignUp {...props} />}></Route>
             <Route exact path="/signin" children={<SignIn {...props} />}></Route>
             <Route exact path="/resetpassword" children={<ResetPassword {...props} />}></Route>

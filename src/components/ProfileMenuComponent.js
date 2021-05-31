@@ -20,9 +20,9 @@ export default function ProfileMenuComponent({isProfileOpen, anchorEl, handlePro
 
   return (
     <Menu open={isProfileOpen} anchorEl={anchorEl} onClose={handleProfileClose} style={{ marginTop: "3rem" }} classes={{paper: classes.menuPaper, list: classes.menuList}}>
-        {!currUser && <MenuItem onClick={() => { history.push("/signup"); handleProfileClose() }}>Sign up</MenuItem>}
-        {!currUser && <MenuItem onClick={() => { history.push("/signin"); handleProfileClose() }} >Log in</MenuItem>}
-        {currUser && <MenuItem onClick={handleSignout}>Sign out</MenuItem>}
+        {!currUser && <MenuItem style={{paddingLeft:"2rem", paddingRight:"2rem"}} onClick={() => { history.push("/signup"); handleProfileClose() }}>Sign up</MenuItem>}
+        {!currUser && <MenuItem style={{paddingLeft:"2rem", paddingRight:"2rem"}} onClick={() => { history.push("/signin"); handleProfileClose() }} >Log in</MenuItem>}
+        {currUser && <MenuItem style={{paddingLeft:"2rem", paddingRight:"2rem"}} onClick={handleSignout}>Sign out</MenuItem>}
     </Menu>
   );
 }
@@ -32,6 +32,6 @@ const useStyles = makeStyles({
     background: "var(--secondary-light)"
   },
   menuList: {
-    color: "var(--light)"
+    color: "var(--light)",
   }
 })
