@@ -66,10 +66,10 @@ function NavComponent(props) {
       <ProfileMenuComponent isProfileOpen={isProfileOpen} handleProfileClose={handleProfileClose} anchorEl={profileRef.current} />
       <AppBar position="fixed" color="secondary" style={{ height: "4rem" }} >
         <Toolbar>
-          <Box style={props.isMobileView ? { textAlign: "center", flexGrow: "2", justifyContent: "center" } : { textAlign: "start", flexGrow: "1" }}>
+          <Box style={{ flexGrow:"1" }}>
           <img onClick={() => history.push("/")} style={{ height:"2.5rem", marginRight:"0.5rem", cursor: "pointer"}} src="./logo.png" alt="logo"/>
           </Box>
-          <Box style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Box style={{ display: "flex" }}>
             {!props.isMobileView ? toolbarComponents :
               <IconButton edge="end" color="inherit" aria-label="menu" onClick={() => setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen)}>
                 {isMenuOpen ?
