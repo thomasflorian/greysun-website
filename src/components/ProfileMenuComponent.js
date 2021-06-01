@@ -1,7 +1,9 @@
 import React from 'react';
 import { useAuth } from '../contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
-import { makeStyles, Menu, MenuItem } from '@material-ui/core';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { makeStyles } from '@material-ui/core/styles'
 
 export default function ProfileMenuComponent({isProfileOpen, anchorEl, handleProfileClose}) {
 

@@ -31,7 +31,7 @@ function StoryContent(props) {
                                 <span className="bold primary-color"> CEO</span>
                             </Typography>
                             <Container>
-                                <Typography variant="caption" classes={{root: classes.typographyRoot}}>
+                                <Typography variant="caption">
                                     Cade Spector is Co-Founder and CEO of GreySun Technologies. He works to maintain cohesion between his values, his team, and his products to create a better world imagined by his late brother Grey. Cade is an experienced Co-Founder of a tax-exempt non-profit, suburban apiary initiative, and inventor of three patented technologies with a demonstrated history in competitive debate – stemming from his relationship with his three brothers – and technology communication. He is pursuing a degree in Philosophy at Duke University and plans on attending medical school in his future.
                                 </Typography>
                             </Container>

@@ -10,7 +10,8 @@ import { Fade } from '@material-ui/core'
 function GreybandContent(props) {
 
     const [mobileSrc, setMobileSrc] = useState("./greysingle.png")
-    const { push } = useHistory()
+    
+    const history = useHistory()
     // Reset scroll on page load
     useEffect(() => { window.scrollTo(0, 0) }, [])
     useEffect(() => { 
@@ -46,7 +47,7 @@ function GreybandContent(props) {
                     <Grid item xs={12} md={4} align={props.isMobileView ? "center" : undefined}>
                         <Typography className="bold" variant="h6">In memory of Greyson Evan Spector</Typography>
                         <Typography variant="body2" align="left">After the death of CEO Cade Spector’s older brother, Cade co-founded GreySun Technologies alongside best friend Jack Mulcrone to immortalize Grey’s legacy and further his message of being proactive to achieve self-improvement. If you’re interested in learning more about Grey’s story, his teachings, and how we plan to carry out his vision of a better world, click below.</Typography>
-                        <Button style={{ marginTop: "1rem" }} variant="contained" size="large" color="primary" onClick={() => push("story")}>Our Story</Button>
+                        <Button style={{ marginTop: "1rem" }} variant="contained" size="large" color="primary" onClick={() => history.push("story")}>Our Story</Button>
                     </Grid>
                     <Grid item xs={8} md={4}>
                         <Image src="./greyson.png" color="transparent" imageStyle={{ borderRadius: "50px" }} />
