@@ -8,8 +8,9 @@ import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 import Chip from '@material-ui/core/Chip'
 import Checkbox from '@material-ui/core/Checkbox';
-import { FormControlLabel, Grid, makeStyles } from "@material-ui/core"
-
+import FormControlLabel from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Checkbox';
+import makeStyles from '@material-ui/core/Checkbox';
 
 const blankForm = { firstname: "", lastname: "", email: "", password: "", confirm: "", age: false, terms: false }
 
