@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { NavLink, useHistory } from 'react-router-dom'
 
@@ -11,8 +11,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import Box from '@material-ui/core/Box'
 import MenuItem from '@material-ui/core/MenuItem'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ProfileMenuComponent from './ProfileMenuComponent'
 import { styled } from '@material-ui/core'
 
 const activeStyles = {
@@ -39,18 +37,8 @@ const links = [
 function NavComponent(props) {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const profileRef = useRef(null)
   const history = useHistory()
   const { currUser } = useAuth()
-
-  const handleProfileOpen = () => {
-    setIsProfileOpen(true)
-  }
-
-  const handleProfileClose = () => {
-    setIsProfileOpen(false)
-  }
 
   const toolbarComponents = links.filter(link => link.requireAuth === false || currUser).map((link, i) => (
     <Link key={i} underline="none" color="inherit" activeStyle={activeStyles} exact component={NavLink} to={link.to} style={{ display: "flex" }}><MenuItem>{link.label}</MenuItem></Link>
@@ -62,7 +50,6 @@ function NavComponent(props) {
 
   return (
     <>
-      <ProfileMenuComponent isProfileOpen={isProfileOpen} handleProfileClose={handleProfileClose} anchorEl={profileRef.current} />
       <AppBar position="fixed" color="secondary" style={{ height: "4rem" }} >
         <Toolbar>
           <Box style={{ flexGrow:"1" }}>
