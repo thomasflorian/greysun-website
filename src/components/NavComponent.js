@@ -34,8 +34,7 @@ const links = [
   { label: "GreyBand", to: "/", requireAuth: false },
   { label: "Our Story", to: "/story", requireAuth: false },
   { label: "Contact", to: "/contact", requireAuth: false },
-  { label: "Store", to: "/store", requireAuth: false },
-  { label: "Dashboard", to: "/dashboard", requireAuth: true }]
+  { label: "Store", to: "/store", requireAuth: false }]
 
 function NavComponent(props) {
 
@@ -76,9 +75,6 @@ function NavComponent(props) {
                   <CloseIcon fontSize="large" /> :
                   <MenuIcon fontSize="large" />}
               </IconButton>}
-            <IconButton ref={profileRef} style={{ marginLeft: "2%" }} color={isProfileOpen ? "primary" : "inherit"} aria-label="login" onClick={handleProfileOpen}>
-              <AccountCircleIcon fontSize="large" />
-            </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
