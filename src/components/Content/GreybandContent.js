@@ -1,46 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import Image from 'material-ui-image'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
-import { Fade } from '@material-ui/core'
 
-function GreybandContent(props) {
-
-    const [mobileSrc, setMobileSrc] = useState("./greysingle.png")
-    
+function GreybandContent(props) {    
     const history = useHistory()
     // Reset scroll on page load
     useEffect(() => { window.scrollTo(0, 0) }, [])
-    useEffect(() => { 
-        const interval = setInterval(() => {
-            setMobileSrc(prevMobileSrc => {
-                if (prevMobileSrc === "./greysingle.png")
-                    return "./whitesingle.png"
-                if (prevMobileSrc === "./whitesingle.png")
-                    return "./blacksingle.png"
-                else
-                    return "./greysingle.png"
-            })
-        }, 6000)
-        return () => clearInterval(interval)
-    }, [])
-    
-
 
     return (
         <>
-            {props.isMobileView ?
-                <div style={{position:"relative"}}>
-                <Fade in={mobileSrc === "./greysingle.png"} timeout={1000}><Image src="./greysingle.png" color="transparent" aspectRatio={1457/1582} style={{ margin: "0" }} /></Fade>
-                <Fade in={mobileSrc === "./whitesingle.png"} timeout={1000}><Image src="./whitesingle.png" color="transparent" aspectRatio={1457/1582} style={{ margin: "0", position: "absolute", top:"0px", left:"0px", width:"100%" }} /></Fade>
-                <Fade in={mobileSrc === "./blacksingle.png"} timeout={1000}><Image src="./blacksingle.png" color="transparent" aspectRatio={1457/1582} style={{ margin: "0", position: "absolute", top:"0px", left:"0px", width:"100%"  }} /></Fade> 
-                </div> :
-                <Image src="./lineup.png" color="transparent" aspectRatio={4728 / 1817} />}
+            <Image src="./greyband-face.png" color="transparent" aspectRatio={2550 / 1434} style={{paddingTop:"450px", objectFit:"contain"}}/>
             <Typography variant={props.isMobileView ? "h2" : "h1"} align="center" noWrap paragraph>Grey<wbr />Band</Typography>
-            <Typography variant="h6" align="center">Something Great is on the Horizon</Typography>
+            <Typography variant="h6" align="center">For Nights Worth Remembering</Typography>
             <div id="space"></div>
             <div className="card">
                 <Grid container spacing={props.isMobileView ? 2 : 10} justify="center" alignItems="center">
