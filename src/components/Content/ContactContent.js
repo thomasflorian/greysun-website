@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { StyledTextField } from '../StyledTextField'
+import emailjs from 'emailjs-com';
 
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
@@ -29,11 +30,18 @@ function ContactContent(props) {
     const handleSubmit = () => {
         const emptyFields = Object.entries(formValues).filter(entry => entry[1] === "")
         if (emptyFields.length === 0) {
-            setFormValues(blankForm)
+            console.log("Worked");
+            emailjs.send("service_xl1iwho","template_pymc4bf", formValues, "user_R3n0bCI9u9qhvL3M8Ocw8").then((result) => {
+                setFormValues(blankForm)
+                alert("Message Sent Successfully!")
+            }, (error) => {
+                alert("Error submitting form. Please reach out at via email or phone.")
+            });
         } else {
             emptyFields.forEach(entry => setFormErrors(prevFormErrors => ({ ...prevFormErrors, [entry[0]]: true })))
         }
     }
+
 
     return (
         <>
