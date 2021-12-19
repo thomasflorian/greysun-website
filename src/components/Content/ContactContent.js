@@ -20,6 +20,7 @@ function ContactContent(props) {
     useEffect(() => { window.scrollTo(0, 0) }, [])
     const [formValues, setFormValues] = useState(blankForm)
     const [formErrors, setFormErrors] = useState(initialErrors)
+    const [formConfirm, setFormConfirm] = useState(false)
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -30,12 +31,12 @@ function ContactContent(props) {
     const handleSubmit = () => {
         const emptyFields = Object.entries(formValues).filter(entry => entry[1] === "")
         if (emptyFields.length === 0) {
-            console.log("Worked");
             emailjs.send("service_xl1iwho","template_pymc4bf", formValues, "user_R3n0bCI9u9qhvL3M8Ocw8").then((result) => {
-                setFormValues(blankForm)
-                alert("Message Sent Successfully!")
+                setFormValues(blankForm);
+                setFormConfirm(true);
+                setTimeout(() => {setFormConfirm(false)}, 3000);
             }, (error) => {
-                alert("Error submitting form. Please reach out at via email or phone.")
+                alert("Unexpected error sending message.")
             });
         } else {
             emptyFields.forEach(entry => setFormErrors(prevFormErrors => ({ ...prevFormErrors, [entry[0]]: true })))
@@ -74,8 +75,11 @@ function ContactContent(props) {
                             </Box>
                         </Grid>
                         <Grid item xs={12} md={7} align="center">
-                            <Box boxShadow={3} style={{ background: "var(--secondary-light)", paddingTop: "2rem", paddingBottom: "2rem", borderRadius: "0.5rem" }}>
-                                <form>
+                            <Box boxShadow={3} style={{ position: "relative", background: "var(--secondary-light)", paddingBottom: "2rem", borderRadius: "0.5rem" }}>
+                                    <Box style={{pointerEvents: "none", transition: "opacity 0.5s", opacity: formConfirm ? 1 : 0, display:"flex", justifyContent:"center", alignItems:"center", position: "absolute", zIndex: 1, width:"100%", height:"100%", backgroundColor:"#000000F0", borderRadius:"0.5rem"}}>
+                                        <Typography style={{color:"var(--primary)", textAlign:"center"}} variant="h4">Message <wbr />Sent</Typography>
+                                    </Box>
+                                <form style={{paddingTop: "2rem"}}>
                                     <Box>
                                         <StyledTextField style={{width: "35%"}} error={formErrors.firstname} type="text" name="firstname" label="First Name" variant="filled" value={formValues.firstname} onChange={handleChange} />
                                         <StyledTextField style={{width: "35%"}} error={formErrors.lastname} type="text" name="lastname" label="Last Name" variant="filled" value={formValues.lastname} onChange={handleChange} />
