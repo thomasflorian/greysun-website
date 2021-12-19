@@ -57,7 +57,7 @@ function ContactContent(props) {
                                 </Container>
                                 <Container style={{ display: "flex", flexGrow: "1", alignItems: "center", marginBottom: "1rem" }}>
                                     <MailOutlineIcon color="primary" style={{ marginLeft: "5%", marginRight: "5%" }} fontSize="large" />
-                                    <Typography variant="body1" align="left">contact<wbr />greysun<wbr />@gmail<wbr />.com </Typography>
+                                    <Typography variant="body1" align="left">info<wbr />@greysun<wbr />tech<wbr />.com </Typography>
                                 </Container>
                                 <Container style={{ display: "flex", flexGrow: "1", alignItems: "center" }}>
                                     <RoomOutlinedIcon color="primary" style={{ marginLeft: "5%", marginRight: "5%" }} fontSize="large" />
