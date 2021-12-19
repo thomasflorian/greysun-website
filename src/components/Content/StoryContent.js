@@ -56,7 +56,7 @@ function StoryContent(props) {
                             </Typography>
                             <Container>
                                 <Typography variant="caption">
-                                    <span>Colin Bernstein is Co-Founder and CTO of GreySun Technologies. He directs the technical development of the products produced by GreySun and is personally designing the schematics, PCV, and firmware for these products. Previously, Colin gained hands-on experience with electronics design through industry internships and hobbyist projects. He is pursuing degrees in Electrical and Computer Engineering and Computer Science at Duke University.</span>
+                                    <span>Colin Bernstein is Co-Founder and CTO of GreySun Technologies. He directs the technical development of the products produced by GreySun and is personally designing the schematics, PCB, and firmware for these products. Previously, Colin gained hands-on experience with electronics design through industry internships and hobbyist projects. He is pursuing degrees in Electrical and Computer Engineering at Duke University.</span>
                                 </Typography>
                             </Container>
                         </Grid>
