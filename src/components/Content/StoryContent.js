@@ -44,7 +44,7 @@ function StoryContent(props) {
                             </Typography>
                             <Container>
                                 <Typography variant="caption">
-                                    <span>Jack Mulcrone is Co-Founder and COO of GreySun Technologies.  He is responsible for overseeing and facilitating the daily operations of the company, as well as providing direct support to all employees and staff. Previously, Jack designed the Vernon Hills Energy Farm: a high school landmark with 15 wind turbines and an energy education classroom complete with a solar panel array, rain water harvesting system, and geothermal heating pads. He is pursuing a degree from Duke University with a major in Philosophy, a minor in Chemistry, and a certificate in Philosophy, Politics, and Economics.</span>
+                                    <span>Jack Mulcrone is Co-Founder and COO of GreySun Technologies. He is responsible for overseeing and facilitating the daily operations of the company, as well as providing direct support to all employees and staff. Previously, Jack designed the Vernon Hills Energy Farm: a high school landmark with 15 wind turbines and an energy education classroom complete with a solar panel array, rain water harvesting system, and geothermal heating pads. He is pursuing a degree from Duke University with a major in Philosophy, a minor in Chemistry, and a certificate in Philosophy, Politics, and Economics.</span>
                                 </Typography>
                             </Container>
                         </Grid>
@@ -56,7 +56,7 @@ function StoryContent(props) {
                             </Typography>
                             <Container>
                                 <Typography variant="caption">
-                                    <span>Colin Bernstein is Co-Founder and CTO of GreySun Technologies. He directs the technical development of the products produced by GreySun and is personally designing the schematics, PCB, and firmware for these products. Previously, Colin gained hands-on experience with electronics design through industry internships and hobbyist projects. He is pursuing degrees in Electrical and Computer Engineering at Duke University.</span>
+                                    <span>Colin Bernstein is Co-Founder and CTO of GreySun Technologies. He directs the technical development of the products produced by GreySun and is personally designing the schematics, PCB, and firmware for these products. Previously, Colin gained hands-on experience with electronics design through industry internships and hobbyist projects. He is pursuing a degree in Electrical and Computer Engineering at Duke University.</span>
                                 </Typography>
                             </Container>
                         </Grid>
