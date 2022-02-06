@@ -1,2 +1,4 @@
 # Redirects from what the browser requests to what we serve
 /*                 https://greysuntechnologies.com
+/                  https://greysuntechnologies.com
+/index.html        https://greysuntechnologies.com
