@@ -23,8 +23,11 @@ const theme = responsiveFontSizes(createMuiTheme({
 
 function App() {
 
-  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 960)
-  window.addEventListener('resize', () => {setIsMobileView(window.innerWidth < 960)})
+  // Redirect to new website
+  window.location.replace("https://www.greysuntechnologies.com");
+
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 960);
+  window.addEventListener('resize', () => {setIsMobileView(window.innerWidth < 960)});
 
   return (
     <React.StrictMode>
