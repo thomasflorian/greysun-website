@@ -31,7 +31,7 @@ function App() {
 
   return (
     <React.StrictMode>
-      <Router>
+      {/* <Router>
         <ThemeProvider theme={theme}>
           <AuthProvider>
             <NavComponent isMobileView={isMobileView} />
@@ -39,7 +39,7 @@ function App() {
             <FooterComponent isMobileView={isMobileView} />
           </AuthProvider>
         </ThemeProvider>
-      </Router>
+      </Router> */}
     </React.StrictMode>
   );
 }
