@@ -4,7 +4,7 @@ import './App.css';
 // import NavComponent from './components/NavComponent'
 // import ContentComponent from './components/ContentComponent'
 // import FooterComponent from './components/FooterComponent'
-import React, { useState } from 'react'
+import React /*, { useState } */ from 'react'
 // import { AuthProvider } from './contexts/AuthContext';
 
 // const theme = responsiveFontSizes(createMuiTheme({
