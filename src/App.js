@@ -26,8 +26,8 @@ function App() {
   // Redirect to new website
   window.location.replace("https://www.greysuntechnologies.com");
 
-  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 960);
-  window.addEventListener('resize', () => {setIsMobileView(window.innerWidth < 960)});
+  // const [isMobileView, setIsMobileView] = useState(window.innerWidth < 960);
+  // window.addEventListener('resize', () => {setIsMobileView(window.innerWidth < 960)});
 
   return (
     <React.StrictMode>
